@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>p2p wiki</title>
+<style>
+#editor form textarea[name=content] { width: 90%; height: 20em; }
+.togetherjs-focus,
+.togetherjs-cursor { visibility: hidden; }
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="p2pwiki.js"></script>
+</head>
+<body>
+<h1>p2p wiki</h1>
+<!-- button onclick="TogetherJS(this); return false;">Start TogetherJS</button -->
+<section id="editor">
+	<form>
+		<label>Page Name: <input type="text" name="pageName" /></label><br />
+		<label>Content:<br />
+		<textarea name="content"></textarea></label><br />
+		<input type="submit" value="save" />
+	</form>
+</section>
+<section id="view">
+</section>
+<section id="navigator">
+</section>
+<script src="https://togetherjs.com/togetherjs-min.js"></script>
+</body>
+</html>
