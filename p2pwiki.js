@@ -1,7 +1,7 @@
 "use strict";
 
 function P2pwiki() {
-};
+}
 P2pwiki.prototype = {
 //	_defaultData: {
 //		public: {
@@ -59,8 +59,8 @@ P2pwiki.prototype = {
 		return true;
 	},
 	generatePageNavigator: function(pages, basePath) {
-		pages = pages || this._pages;
 		basePath = basePath || '';
+		pages = pages || this._pages;
 		var $ul = $('<ul>');
 		for (var name in pages) {
 			if (this.isDeletedPage(pages[name])) continue;
@@ -105,6 +105,9 @@ P2pwiki.prototype = {
 			else pages = pages[paths[i]].pages;
 		}
 	},
+	pages: function() {
+		return this._pages;
+	},
 	refreshNavigator: function() {
 		$('#navigator').empty().append(this.generatePageNavigator());
 	}
@@ -134,9 +137,9 @@ var TogetherJSConfig_on = {
 			p2pwiki.mergePages(msg.pages);
 			p2pwiki.save();
 			p2pwiki.refreshNavigator();
-			if (msg.step === 1) TogetherJS.send({ type: 'mergePages', pages: p2pwiki._pages, step: 2 });
+			if (msg.step === 1) TogetherJS.send({ type: 'mergePages', pages: p2pwiki.pages(), step: 2 });
 		});
-		TogetherJS.send({ type: 'mergePages', pages: p2pwiki._pages, step: 1 });
+		TogetherJS.send({ type: 'mergePages', pages: p2pwiki.pages(), step: 1 });
 	}
 };
 
@@ -156,8 +159,8 @@ $(function() {
 		var params = paramString.split('&');
 		var paramObj = {};
 		for (var i = 0; i < params.length; i++) {
-			var kv = params[i].split('=');
-			paramObj[kv[0]] = kv[1];
+			var keyValue = params[i].split('=');
+			paramObj[keyValue[0]] = keyValue[1];
 		}
 		if (paramObj.page) {
 			var pageName = paramObj.page;
